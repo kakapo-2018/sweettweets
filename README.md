@@ -54,3 +54,19 @@ Register form:
 - Username/password
 
 * = Used on profile 
+
+
+## Battle plan
+To Do:
+- Boilerplate - React, Reduce, Auth
+
+# Client
+- App component stateful (with nav, login, auth)
+- redux action: requet tweet, receive tweet, add tweet)
+- Reducers (action) fetch tweet(), add tweet()
+
+# Server
+- DB users - migration + seed (name, password, cohort, id)
+- DB tweet - migration + seed (tweet string, user id)
+- routes/API post tweet
+- API get tweet
