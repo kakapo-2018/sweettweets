@@ -18,12 +18,11 @@ const TweetList = props => {
             {props.tweets.tweets &&
               props.tweets.tweets.map(tweet => {
                 return (
-                  <div></div>
-                  // <Tweet
-                  //   key={tweet.id}
-                  //   tweet={tweet.tweet}
-                  //   user_id={tweet.user_id}
-                  // />
+                  <Tweet
+                    key={tweet.id}
+                    tweet={tweet.tweet}
+                    user_id={tweet.user_id}
+                  />
                 );
               })}
           </div>
