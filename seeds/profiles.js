@@ -7,31 +7,31 @@ exports.seed = function (knex, Promise) {
         {
           year: '1999',
           city_id: '1',
-          status: 'staff',
+          status: '1',
           user_id: '1',
         },
         {
           year: '2015',
           city_id: '2',
-          status: 'student',
+          status: '1',
           user_id: '3',
         },
         {
           year: '2018',
           city_id: '1',
-          status: 'student',
+          status: '2',
           user_id: '2',
         },
         {
           year: '2015',
           city_id: '2',
-          status: 'student',
+          status: '2',
           user_id: '1',
         },
         {
           year: '1974',
           city_id: '1',
-          status: 'staff',
+          status: '2',
           user_id: '4',
         }
       ]);
