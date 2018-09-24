@@ -17,7 +17,8 @@ class App extends React.Component {
       showLogin: false,
       showTweets: true,
       showProfile: false,
-      addTweet: false
+      addTweet: false,
+      cohort: 0
     };
     this.loginClick = this.loginClick.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.tweetUpdate = this.tweetUpdate.bind(this);
     this.toggleRegister = this.toggleRegister.bind(this);
     this.addClick = this.addClick.bind(this);
+    this.toggleCohort = this.toggleCohort.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +62,12 @@ class App extends React.Component {
         showProfile: false
       });
     }
+  }
+
+  toggleCohort(e) {
+    this.setState({
+      cohort: e.target.value
+    });
   }
 
   registerClick() {
@@ -101,8 +109,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="body2">
-        <h1 id="titleHead">Sweet Tweets <img src="/images/logo/EDA-logo.png" id="logo"/>
-</h1>
+        <h1 id="titleHead">
+          Sweet Tweets <img src="/images/logo/EDA-logo.png" id="logo" />
+        </h1>
 
         <Navbar
           loginClick={this.loginClick}
@@ -121,7 +130,18 @@ class App extends React.Component {
           this.props.auth.isAuthenticated && (
             <AddTweet tweetUpdate={this.tweetUpdate} />
           )}
-        {this.state.showTweets && <TweetList />}
+        <select
+          id="form"
+          class="form-control form-control-sm"
+          name="cohort"
+          onChange={this.toggleCohort}
+        >
+          <option value="0">Pick your cohort </option>
+          <option value="1">Kakapo </option>
+          <option value="2">Ruru </option>
+          <option value="3">Pohutukawa </option>
+        </select>
+        {this.state.showTweets && <TweetList cohort={this.state.cohort} />}
       </div>
     );
   }
