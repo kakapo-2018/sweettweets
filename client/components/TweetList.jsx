@@ -33,4 +33,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tweetlist);
+export default connect(mapStateToProps, mapDispatchToProps)(TweetList);
