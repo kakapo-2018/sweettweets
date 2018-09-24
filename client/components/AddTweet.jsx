@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { saveTweet } from "../actions/tweet";
 
 class AddTweet extends React.Component {
   constructor(props) {
@@ -7,6 +9,7 @@ class AddTweet extends React.Component {
       tweet: ""
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
@@ -14,6 +17,10 @@ class AddTweet extends React.Component {
       ...this.state,
       [e.target.name]: e.target.value
     });
+  }
+
+  handleClick() {
+    this.props.saveTweet(this.state.tweet);
   }
   render() {
     return (
@@ -33,4 +40,15 @@ class AddTweet extends React.Component {
   }
 }
 
-export default AddTweet;
+function mapDispatchToProps(dispatch) {
+  return {
+    saveTweet: tweet => {
+      dispatch(saveTweet(tweet));
+    }
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddTweet);
