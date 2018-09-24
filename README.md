@@ -101,6 +101,123 @@ AOS animation
 
 ## API (Client - Server)
 
+Method : GET 
+Route : / API/TWEET
+(body) - an array of objects
+```sh
+[
+    {
+        "tweet": "Drink water",
+        "user_id": "1"   
+    },
+    {
+        "tweet" : "Eat vegetables",
+        "user_id": "2"
+    },
+    {
+        "tweet" : "blablablablabla",
+        "user_id": "2"
+    },
+]
+```
+
+Method : POST 
+Route : / API/ADD/TWEET
+(body) - an object with a string of max 200 char in tweet
+```sh
+{"tweet" : "tweet tweet tweet",
+"user_id" : "1"
+} 
+```
+
+Method : POST 
+Route : / API/AUTH/REGISTER
+
+(body) - an object / if correct new user :
+```sh
+{"user_name":"OTHERbob",
+"cohort":"1",
+"password":"bob"
+} 
+```
+Will return
+```sh
+{"message":"Authentication successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJib2JCT0IiLCJpYXQiOjE1Mzc0ODM4MDMsImV4cCI6MTUzNzU3MDIwM30.UfxJJQ8b0ppekGycWMu6FydSb3RaW0i8couDx3bOwjc"}
+```
+
+(body) - an object /if user name exists :
+```sh
+{"user_name":"bob",
+"cohort":"1",
+"hash":"bob"
+} 
+```
+Will return
+```sh
+{"message":"User Name Taken"}
+```
+
+/!\ only mandatory to habe a name a password as a string
+```sh
+{
+"user_name":"OTTERbob",
+"password":""
+} 
+```
+Will return
+```sh
+{"message":"Authentication successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJPVFRFUmJvYiIsImlhdCI6MTUzNzQ4NTEwOCwiZXhwIjoxNTM3NTcxNTA4fQ.g8J41Y5dZHMVSOY-_aJHRZUbVJfYOglUVRVjneFshxs"}
+```
+
+
+Method : POST 
+Route : / API/AUTH/LOGIN 
+
+(body) - an object / if correct combinaison :
+```sh
+{"user_name":"bob",
+"password":"krunk"
+} 
+```
+Will return
+```sh
+{"message":"Authentication successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJib2IiLCJpYXQiOjE1Mzc0ODQ4MTUsImV4cCI6MTUzNzU3MTIxNX0.wNY3GveyZIeBKwDVpJ3ulkYE_KQv-T4cnuQz4bAsCWw"}
+```
+
+(body) - an object / if incorrect password :
+```sh
+{"user_name":"bob",
+"password":"bob"
+} 
+```
+Will return
+```sh
+{"message":"Password is incorrect"}
+```
+(body) - an object / if incorrect name :
+```sh
+{"user_name":"maurice123",
+"password":"krunk"
+} 
+```
+Will return
+```sh
+{"message":"User does not exist"}
+```
+
+--STRETCH--
+
+Method : PUT 
+Route : / API/EDIT/TWEET
+
+Method : PUT 
+Route : / API/EDIT/PROFILE
+
+Method : GET 
+Route : / API/PROFILE
+
+ ---
+
 ## DB (Server Side)
 
 ## Setup
