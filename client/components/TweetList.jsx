@@ -1,28 +1,41 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
+import Tweet from "./Tweet";
 
-import Tweet from './Tweet'
-
-const TweetList = (props) => {
-  console.log(props.tweets.tweets)
+const TweetList = props => {
+  console.log(props.tweets.tweets);
   return (
-    <div className='tweetList'>
-      {props.tweets.tweets && props.tweets.tweets.map(tweet => {
-        return <Tweet key={tweet.id}
-          tweet={tweet.tweet}
-          user_id={tweet.user_id} />
-      }
-      )}
+    <div id="containerbird" class="container">
+      <div id="birdFloat" class="row">
+        <div id="col1" class="col">
+          <div id="birdFloat">
+            <img id="bird2" src="/images/kakapo1.gif" />
+          </div>
+        </div>
+        <div id="speechCol" class="col">
+          <div id="speech-bubble" className="tweetList">
+            {props.tweets.tweets &&
+              props.tweets.tweets.map(tweet => {
+                return (
+                  <Tweet
+                    key={tweet.id}
+                    tweet={tweet.tweet}
+                    user_id={tweet.user_id}
+                  />
+                );
+              })}
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     tweets: state.tweets
-  }
-}
-
+  };
+};
 
 export default connect(mapStateToProps)(TweetList);

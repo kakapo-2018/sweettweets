@@ -11,23 +11,18 @@ router.use(express.json());
 
 //get all tweets
 router.get("/tweet", (req, res) => {
-  // console.log(req);
-
-  console.log("hit the route tweeeeeeeeeeeeets");
   tweetDB.getTweets().then(data => res.json(data));
 });
 
-router.post("/signin", sayHello, signIn, auth.issueJwt);
 
+router.post("/signin", sayHello, signIn, auth.issueJwt);
 function sayHello(req, res, next) {
-  console.log("Hello");
   next();
 }
 
 router.post("/register", register, auth.issueJwt);
 
 function signIn(req, res, next) {
-  console.log("signIn");
   users
     .getByName(req.body.user_name)
     .then(user => {
@@ -53,7 +48,7 @@ function register(req, res, next) {
       if (exists) {
         return res.status(400).send({ message: "User exists" });
       }
-      users.create(req.body.user_name, req.body.password).then(() => next());
+      users.create(req.body.user_name, req.body.password, req.body.cohort).then(() => next());
     })
     .catch(err => {
       res.status(400).send({ message: err.message });
@@ -80,6 +75,13 @@ router.use(
   auth.handleError
 );
 
+// delete tweet
+router.delete("/tweet", (req, res) => {
+  tweetDB
+    .delTweet(req.body.id)
+    .then(data => res.json(data));
+});
+
 // These routes are protected  EXAMPLE IS BELOW
 // router.get('/secret', (req, res) => {
 //   res.json({
@@ -87,18 +89,24 @@ router.use(
 //     user: `Your user ID is: ${req.user.id}`
 //   })
 // })
-router.post("/add/tweet", (req, res) => {
-  console.log("hit the route wahoooo");
-});
+// router.post("/add/tweet", (req, res) => {
+//   console.log("hit the route wahoooo");
+// });
 
 //save a tweet
 router.post("/add/tweet", (req, res) => {
-  console.log(req);
-
-  console.log("hit the route wahoooo");
   tweetDB
     .saveTweet(req.body.tweet, req.body.user_id)
     .then(data => res.json(data));
 });
+
+// update tweet
+router.put("/tweet/update", (req, res) => {
+  tweetDB
+    .updateTweet(req.body.tweet)
+    .then(data => res.json(data));
+});
+
+
 
 module.exports = router;

@@ -101,6 +101,21 @@ AOS animation
 
 ## API (Client - Server)
 
+  | Method | Endpoint | Response | Non registered access |
+  | --- | --- | --- | --- | 
+  | GET | api/tweet | array of tweet objects | Yes |
+  | POST | api/add/tweet | ... | No |
+  | POST | api/auth/register | object with token access | Yes |
+  | POST | api/auth/login | object with token access | Yes |
+  | PUT | api/edit/tweet | ... | Yes |
+  | PUT | api/edit/profile | ... | Yes |
+  | GET | api/profile | object | Yes |
+
+
+
+
+
+
 Method : GET 
 Route : / API/TWEET
 (body) - an array of objects
