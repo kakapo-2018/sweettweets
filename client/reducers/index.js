@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 
 import auth from "./auth";
-
+import tweets from "./tweets";
 const reducers = combineReducers({
-  auth
+  auth,
+  tweets
 });
 
 export default reducers;

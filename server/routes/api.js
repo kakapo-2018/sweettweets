@@ -4,9 +4,18 @@ const verifyJwt = require("express-jwt");
 const crypto = require("../lib/crypto");
 const users = require("../lib/users");
 const auth = require("../lib/auth");
+const tweetDB = require("../lib/tweets");
 
 const router = express.Router();
 router.use(express.json());
+
+//get all tweets
+router.get("/tweet", (req, res) => {
+  // console.log(req);
+
+  console.log("hit the route tweeeeeeeeeeeeets");
+  tweetDB.getTweets().then(data => res.json(data));
+});
 
 router.post("/signin", sayHello, signIn, auth.issueJwt);
 
@@ -20,7 +29,7 @@ router.post("/register", register, auth.issueJwt);
 function signIn(req, res, next) {
   console.log("signIn");
   users
-    .getByName(req.body.username)
+    .getByName(req.body.user_name)
     .then(user => {
       return user || invalidCredentials(res);
     })
@@ -39,12 +48,12 @@ function signIn(req, res, next) {
 
 function register(req, res, next) {
   users
-    .exists(req.body.username)
+    .exists(req.body.user_name)
     .then(exists => {
       if (exists) {
         return res.status(400).send({ message: "User exists" });
       }
-      users.create(req.body.username, req.body.password).then(() => next());
+      users.create(req.body.user_name, req.body.password).then(() => next());
     })
     .catch(err => {
       res.status(400).send({ message: err.message });
@@ -78,5 +87,18 @@ router.use(
 //     user: `Your user ID is: ${req.user.id}`
 //   })
 // })
+// router.post("/add/tweet", (req, res) => {
+//   console.log("hit the route wahoooo");
+// });
+
+//save a tweet
+router.post("/add/tweet", (req, res) => {
+  console.log(req);
+
+  console.log("hit the route wahoooo");
+  tweetDB
+    .saveTweet(req.body.tweet, req.body.user_id)
+    .then(data => res.json(data));
+});
 
 module.exports = router;

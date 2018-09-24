@@ -1,40 +1,40 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {loginUser} from '../actions/login'
+import { loginUser } from '../actions/login'
 import ErrorMessage from './ErrorMessage'
 
 class LoginForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      username: '',
+      user_name: '',
       password: ''
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value
     })
   }
 
-  handleClick () {
-    const {username, password} = this.state
+  handleClick() {
+    const { user_name, password } = this.state
     const creds = {
-      username: username.trim(),
+      user_name: user_name.trim(),
       password: password.trim()
     }
     this.props.loginUser(creds)
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <p><input name='username'
+        <p><input name='user_name'
           placeholder='Username'
           onChange={this.handleChange} /></p>
         <p><input type='password' name='password'

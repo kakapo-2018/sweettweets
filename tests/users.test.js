@@ -29,11 +29,11 @@ test.skip('exists is falsy for gnu', () => {
 test.skip('getById obtains correct user', () => {
   return users
     .getById(2, testDb)
-    .then(([user]) => expect(user.username).toBe('capybara'))
+    .then(([user]) => expect(user.user_name).toBe('capybara'))
 })
 
 test.skip('getByName obtains correct user', () => {
   return users
     .getByName('aardvark', testDb)
-    .then(([ user ]) => expect(user.id).toBe(1))
+    .then(([user]) => expect(user.id).toBe(1))
 })
