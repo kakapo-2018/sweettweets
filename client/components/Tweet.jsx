@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Tweet = (props) => {
+const Tweet = props => {
   return (
     <div>
       <p>{props.tweet}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Tweet
+export default Tweet;
