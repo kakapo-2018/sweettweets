@@ -14,6 +14,7 @@ router.get("/tweet", (req, res) => {
   tweetDB.getTweets().then(data => res.json(data));
 });
 
+
 router.post("/signin", sayHello, signIn, auth.issueJwt);
 function sayHello(req, res, next) {
   next();
@@ -74,6 +75,13 @@ router.use(
   auth.handleError
 );
 
+// delete tweet
+router.delete("/tweet", (req, res) => {
+  tweetDB
+    .delTweet(req.body.id)
+    .then(data => res.json(data));
+});
+
 // These routes are protected  EXAMPLE IS BELOW
 // router.get('/secret', (req, res) => {
 //   res.json({
@@ -87,12 +95,18 @@ router.use(
 
 //save a tweet
 router.post("/add/tweet", (req, res) => {
-  console.log(req);
-
-  console.log("hit the route wahoooo");
   tweetDB
     .saveTweet(req.body.tweet, req.body.user_id)
     .then(data => res.json(data));
 });
+
+// update tweet
+router.put("/tweet/update", (req, res) => {
+  tweetDB
+    .updateTweet(req.body.tweet)
+    .then(data => res.json(data));
+});
+
+
 
 module.exports = router;

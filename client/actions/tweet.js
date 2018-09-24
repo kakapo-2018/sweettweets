@@ -6,7 +6,7 @@ export function saveTweet(tweet, id) {
     tweet: tweet,
     user_id: id
   };
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(saveTweetReq());
     request("post", "/add/tweet", obj).then(response => {
       if (!response.ok) {
@@ -42,7 +42,7 @@ function error() {
 //get all tweets
 
 export function getTweet() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(getTweetReq());
     request("get", "/tweet").then(response => {
       if (!response.ok) {
@@ -69,4 +69,44 @@ function getTweetRec(response) {
     isAuthenticated: false,
     tweets: response.body
   };
+}
+
+
+//this is for Updating tweets!
+export function updateTweet(tweet, id) {
+  let obj = {
+    tweet: tweet,
+    user_id: id
+  };
+  return function (dispatch) {
+    dispatch(updateTweetReq());
+    request("put", "/tweet", obj).then(response => {
+      if (!response.ok) {
+        dispatch(saveError());
+      } else {
+        dispatch(updateTweetRec());
+      }
+    });
+  };
+}
+
+function updateTweetReq() {
+  return {
+    type: "TWEET_UPDATE_REQUEST",
+    isFetching: true,
+    isAuthenticated: true
+  };
+}
+
+function updateTweetRec() {
+  return {
+    type: "TWEET_UPDATE_RECEIPT",
+    isFetching: false,
+    isAuthenticated: true,
+    response: "Tweet UPDATED!!"
+  };
+}
+
+function error() {
+  console.log("error in update!!!!");
 }
