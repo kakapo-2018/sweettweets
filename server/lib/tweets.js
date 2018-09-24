@@ -17,5 +17,6 @@ function saveTweet(tweet, id, testDb) {
 
 function getTweets(testDb) {
   const connection = testDb || knex;
+  // console.log(connection("tweets").select())
   return connection("tweets").select();
 }
