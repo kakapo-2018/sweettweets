@@ -11,14 +11,14 @@ export default function tweets(state = [], action) {
       return {
         ...state,
         isFetching: false,
-        isAuthenticated: true,
-        tweets: action.response
+        isAuthenticated: true
+        // tweets: action.response
       };
     case "TWEET_GET_REQUEST":
       return {
         ...state,
         isFetching: true,
-        isAuthenticated: false,
+        isAuthenticated: false
       };
     case "TWEET_GET_RECEIPT":
       return {
