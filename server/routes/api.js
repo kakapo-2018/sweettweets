@@ -9,6 +9,14 @@ const tweetDB = require("../lib/tweets");
 const router = express.Router();
 router.use(express.json());
 
+//get all tweets
+router.get("/tweet", (req, res) => {
+  console.log(req);
+
+  console.log("hit the route tweeeeeeeeeeeeets");
+  tweetDB.getTweets().then(data => res.json(data));
+});
+
 router.post("/signin", sayHello, signIn, auth.issueJwt);
 
 function sayHello(req, res, next) {
@@ -79,6 +87,8 @@ router.use(
 //     user: `Your user ID is: ${req.user.id}`
 //   })
 // })
+
+//save a tweet
 router.post("/add/tweet", (req, res) => {
   console.log(req);
 

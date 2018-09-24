@@ -3,7 +3,8 @@ const config = require("../../knexfile")[environment];
 const knex = require("knex")(config);
 
 module.exports = {
-  saveTweet
+  saveTweet,
+  getTweets
 };
 
 function saveTweet(tweet, id, testDb) {
@@ -12,4 +13,9 @@ function saveTweet(tweet, id, testDb) {
     tweet: tweet,
     user_id: id
   });
+}
+
+function getTweets(testDb) {
+  const connection = testDb || knex;
+  return connection("tweets").select();
 }
