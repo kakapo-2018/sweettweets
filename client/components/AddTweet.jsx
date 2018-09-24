@@ -21,12 +21,14 @@ class AddTweet extends React.Component {
 
   handleClick() {
     this.props.saveTweet(this.state.tweet, this.props.state.auth.user.id);
-    this.props.tweetUpdate();
+    setTimeout(
+      function() {
+        this.props.tweetUpdate();
+      }.bind(this),
+      200
+    );
   }
   render() {
-    console.log(this.props.tweet);
-    console.log(this.state);
-
     return (
       <div
         data-aos="fade-up-left
