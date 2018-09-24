@@ -68,6 +68,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Sweet Tweets</h1>
+
         <Navbar
           loginClick={this.loginClick}
           registerClick={this.registerClick}
