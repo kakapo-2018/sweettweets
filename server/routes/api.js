@@ -83,7 +83,9 @@ router.post("/add/tweet", (req, res) => {
   console.log(req);
 
   console.log("hit the route wahoooo");
-  tweetDB.saveTweet("hello", "3").then(data => console.log(data));
+  tweetDB
+    .saveTweet(req.body.tweet, req.body.user_id)
+    .then(data => res.json(data));
 });
 
 module.exports = router;

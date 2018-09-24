@@ -1,10 +1,10 @@
 import request from "../utils/api";
 
 //this is for saving tweets!
-export function saveTweet(tweet) {
+export function saveTweet(tweet, id) {
   let obj = {
     tweet: tweet,
-    user_id: "leslie"
+    user_id: id
   };
   return function(dispatch) {
     dispatch(saveTweetReq());
