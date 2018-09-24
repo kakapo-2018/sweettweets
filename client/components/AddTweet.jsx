@@ -41,7 +41,7 @@ class AddTweet extends React.Component {
         <h2>Add your tweet here:</h2>
         <p>
           <textarea
-            maxlength="200"
+            maxLength="200"
             id="tweetInput"
             className="form-control"
             type="text"
