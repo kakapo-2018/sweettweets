@@ -109,8 +109,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="body2">
-        <h1 id="titleHead">Sweet Tweets <img src="/images/logo/EDA-logo.png" id="logo"/>
-</h1>
+        <h1 id="titleHead">
+          Sweet Tweets <img src="/images/logo/EDA-logo.png" id="logo" />
+        </h1>
 
         <Navbar
           loginClick={this.loginClick}
@@ -129,7 +130,6 @@ class App extends React.Component {
           this.props.auth.isAuthenticated && (
             <AddTweet tweetUpdate={this.tweetUpdate} />
           )}
-        {this.state.showTweets && <TweetList cohort={this.state.cohort} />}
         <select
           id="form"
           class="form-control form-control-sm"
@@ -141,6 +141,7 @@ class App extends React.Component {
           <option value="2">Ruru </option>
           <option value="3">Pohutukawa </option>
         </select>
+        {this.state.showTweets && <TweetList cohort={this.state.cohort} />}
       </div>
     );
   }
