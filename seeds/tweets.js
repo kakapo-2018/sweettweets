@@ -36,7 +36,19 @@ exports.seed = function (knex, Promise) {
         {
           tweet: 'Flick through the Student Handbook before the week to get familiar with new ideas, review it more thoroughly at the end of the week to hit things home. Have fun!',
           user_id: '3', 
-        }
+        },
+        {
+          tweet: 'May the force be WITH YOU',
+          user_id: '3', 
+        },
+        {
+          tweet: 'Learn from others and take the knowledge that you learn from the experience of this.',
+          user_id: '4', 
+        },
+        {
+          tweet: 'Work overtime when needed and try to participate to the best of your ability in group activities',
+          user_id: '4', 
+        },
       ]);
     });
 };
