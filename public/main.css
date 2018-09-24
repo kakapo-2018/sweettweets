@@ -26,6 +26,13 @@
   margin-left: 30%;
 }
 
+#logo {
+  max-width: 5%;
+  max-height: 5%;
+  margin-left: 20%;
+  border: 1px solid black;
+}
+
 #titleHead {
   margin-left: 2.5%;
   font-weight: 900;

@@ -45,7 +45,8 @@ const Navbar = ({
               </button>
             </div>
           )}
-          {/* <img src="/images/logo/EDA-logo.png"/> */}
+        
+        
           <hr />
         </div>
       </div>
