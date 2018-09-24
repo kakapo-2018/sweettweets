@@ -16,10 +16,14 @@ const Navbar = ({
         <div>
           {!isAuthenticated && (
             <div>
-              <button class="btn btn-success" onClick={loginClick}>
+              <button id="lefty" class="btn btn-success" onClick={loginClick}>
                 Login
               </button>
-              <button class="btn btn-success" onClick={registerClick}>
+              <button
+                id="lefty"
+                class="btn btn-success"
+                onClick={registerClick}
+              >
                 Register
               </button>
             </div>
@@ -42,6 +46,8 @@ const Navbar = ({
 
             </div>
           )}
+        
+        
           <hr />
         </div>
       </div>

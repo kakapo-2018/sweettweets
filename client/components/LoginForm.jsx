@@ -34,9 +34,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="goright">
         <p>
           <input
+            id="proInp"
             name="user_name"
             placeholder="Username"
             onChange={this.handleChange}
@@ -44,13 +45,16 @@ class LoginForm extends React.Component {
         </p>
         <p>
           <input
+            id="proInp"
             type="password"
             name="password"
             placeholder="Password"
             onChange={this.handleChange}
           />
         </p>
-        <button onClick={this.handleClick}>Login</button>
+        <button class="btn btn-success" onClick={this.handleClick}>
+          Login
+        </button>
         <ErrorMessage reducer="auth" />
       </div>
     );
