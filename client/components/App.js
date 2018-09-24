@@ -1,19 +1,14 @@
-import React from 'react'
-
-import Quote from './Quote'
-import Navbar from './Navbar'
+import React from "react";
+import Navbar from "./Navbar";
 
 const App = () => {
   return (
     <div>
-      <h1>Quotes</h1>
+      <h1>Sweet Tweets</h1>
 
       <Navbar />
-      <div className='quote'>
-        <Quote />
-      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

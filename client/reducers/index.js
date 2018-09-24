@@ -1,11 +1,9 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from "redux";
 
-import auth from './auth'
-import quote from './quote'
+import auth from "./auth";
 
 const reducers = combineReducers({
-  auth,
-  quote
-})
+  auth
+});
 
-export default reducers
+export default reducers;
