@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addTweet } from './../actions'
 
 import Tweet from './Tweet'
 
 const TweetList = (props) => {
-  console.log(props)
+  console.log(props.tweets.tweets)
   return (
-    <div>
-      {props.tweet.map(tweet => {
-        <Tweet key={tweet.id}
-          tweet={tweet}
+    <div className='tweetList'>
+      {props.tweets.tweets && props.tweets.tweets.map(tweet => {
+        return <Tweet key={tweet.id}
+          tweet={tweet.tweet}
           user_id={tweet.user_id} />
       }
       )}
@@ -25,12 +24,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTweet: (id) => {
-      dispatch(addTweet(id))
-    }
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TweetList);
+export default connect(mapStateToProps)(TweetList);
