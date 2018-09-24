@@ -42,9 +42,11 @@ class RegisterForm extends React.Component {
   render() {
     const { user_name, password, confirm } = this.state;
     return (
-      <div>
+      <div id="goright">
         <p>
           <input
+            id="proInp"
+            class="form-control"
             name="user_name"
             placeholder="Username"
             onChange={this.handleChange}
@@ -54,6 +56,8 @@ class RegisterForm extends React.Component {
 
         <p>
           <input
+            id="proInp"
+            class="form-control"
             type="password"
             name="password"
             placeholder="Password"
@@ -64,6 +68,8 @@ class RegisterForm extends React.Component {
 
         <p>
           <input
+            id="proInp"
+            class="form-control"
             type="password"
             name="confirm"
             placeholder="Confirm"
@@ -72,14 +78,21 @@ class RegisterForm extends React.Component {
           />
         </p>
 
-        <select name='cohort' onChange={this.handleChange}>
-          <option value='0'>Pick your cohort </option>
-          <option value='1'>kakapo </option>
-          <option value='2'>ruru </option>
-          <option value='3'>Pohutukawa </option>
+        <select
+          id="form"
+          class="form-control form-control-sm"
+          name="cohort"
+          onChange={this.handleChange}
+        >
+          <option value="0">Pick your cohort </option>
+          <option value="1">Kakapo </option>
+          <option value="2">Ruru </option>
+          <option value="3">Pohutukawa </option>
         </select>
-
-        <button onClick={this.handleClick}>Register</button>
+        <br />
+        <button class="btn btn-success" onClick={this.handleClick}>
+          Register
+        </button>
 
         <ErrorMessage reducer="auth" />
       </div>

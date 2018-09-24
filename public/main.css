@@ -10,10 +10,15 @@
 
 #addTweet {
   max-width: 30%;
+  margin-bottom: 2.5%;
 }
 #birdFloat {
   display: flex;
   max-width: 90vw;
+}
+
+#lefty {
+  margin-left: 10px;
 }
 
 #speechCol {
@@ -22,8 +27,14 @@
 }
 
 #titleHead {
-  margin-left: 7.5%;
+  margin-left: 2.5%;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 4.5em;
   font-family: "Lato", sans-serif;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  color: white;
 }
 
 #speech-bubble {
@@ -80,4 +91,21 @@
 
 .row {
   flex-wrap: nowrap !important;
+}
+
+#profileForm {
+  margin-left: 5%;
+}
+
+#proInp {
+  max-width: 10%;
+}
+
+#form {
+  max-width: 10%;
+  margin-bottom: 3px;
+}
+
+#goright {
+  margin-left: 3%;
 }
