@@ -1,11 +1,11 @@
 import request from '../utils/api'
-import {receiveLogin} from './login'
-import {saveUserToken} from '../utils/auth'
+import { receiveLogin } from './login'
+import { saveUserToken } from '../utils/auth'
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 export const REGISTER_FAILURE = 'REGISTER_FAILURE'
 
-function requestRegister (creds) {
+function requestRegister(creds) {
   return {
     type: REGISTER_REQUEST,
     isFetching: true,
@@ -14,7 +14,7 @@ function requestRegister (creds) {
   }
 }
 
-export function registerError (message) {
+export function registerError(message) {
   return {
     type: REGISTER_FAILURE,
     isFetching: false,
@@ -23,12 +23,12 @@ export function registerError (message) {
   }
 }
 
-export function registerUser (creds) {
+export function registerUser(creds) {
   return dispatch => {
     // We dispatch requestRegister to kickoff the call to the API
     dispatch(requestRegister(creds))
 
-    return request('post', '/register', creds)
+    return request('post', 'register', creds)
       .then((response) => {
         if (!response.ok) {
           // If there was a problem, we want to

@@ -10,7 +10,8 @@ class RegisterForm extends React.Component {
     this.state = {
       user_name: '',
       password: '',
-      confirm: ''
+      confirm: '',
+      cohort: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -24,14 +25,15 @@ class RegisterForm extends React.Component {
   }
 
   handleClick(event) {
-    const { user_name, password, confirm } = this.state
+    const { user_name, password, confirm, cohort } = this.state
     if (password !== confirm) {
       this.props.registerError('Passwords do not match!')
       return
     }
     const creds = {
       user_name: user_name.trim(),
-      password: password.trim()
+      password: password.trim(),
+      cohort: cohort.trim()
     }
     this.props.registerUser(creds)
   }
@@ -48,6 +50,12 @@ class RegisterForm extends React.Component {
 
         <p><input type='password' name='confirm' placeholder='Confirm'
           onChange={this.handleChange} value={confirm} /></p>
+
+        <select name='cohort' onChange={this.handleChange}>
+          <option value='1'>kakapo 2018</option>
+          <option value='2'>ruru 2018</option>
+          <option value='3'>OOO 2018</option>
+        </select>
 
         <button onClick={this.handleClick}>Register</button>
 
