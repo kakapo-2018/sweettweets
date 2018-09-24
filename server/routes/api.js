@@ -14,6 +14,7 @@ router.get("/tweet", (req, res) => {
   tweetDB.getTweets().then(data => res.json(data));
 });
 
+
 router.post("/signin", sayHello, signIn, auth.issueJwt);
 function sayHello(req, res, next) {
   next();
@@ -66,6 +67,8 @@ function getSecret(req, payload, done) {
   done(null, process.env.JWT_SECRET);
 }
 
+
+
 // Protect all routes beneath this point
 router.use(
   verifyJwt({
@@ -87,12 +90,30 @@ router.use(
 
 //save a tweet
 router.post("/add/tweet", (req, res) => {
-  console.log(req);
-
-  console.log("hit the route wahoooo");
   tweetDB
     .saveTweet(req.body.tweet, req.body.user_id)
     .then(data => res.json(data));
 });
+
+
+// delete tweet
+router.delete("/tweet", (req, res) => {
+  tweetDB
+    .delTweet(req.body.id)
+    .then(data => res.json(data));
+});
+
+// update tweet
+router.put("/tweet/update", (req, res) => {
+  //console.log(req, 'helloo?')
+  // console.log(req.body.tweet)
+  tweetDB
+    .updateTweet(req.body.tweet, req.body.id)
+    .then(data => {
+      // console.log(data)
+      return res.json({ updated: data })
+    });
+});
+
 
 module.exports = router;

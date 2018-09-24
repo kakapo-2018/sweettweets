@@ -4,7 +4,9 @@ const knex = require("knex")(config);
 
 module.exports = {
   saveTweet,
-  getTweets
+  getTweets,
+  updateTweet,
+  delTweet
 };
 
 function saveTweet(tweet, id, testDb) {
@@ -17,6 +19,25 @@ function saveTweet(tweet, id, testDb) {
 
 function getTweets(testDb) {
   const connection = testDb || knex;
-  // console.log(connection("tweets").select())
   return connection("tweets").select();
+}
+
+function updateTweet(tweet, id, testDb) {
+  const connection = testDb || knex;
+  console.log({ tweet })
+  return connection("tweets")
+    .where({ id: id })
+    .update({
+      tweet: tweet,
+    }).then(data => {
+      console.log(data)
+      return data
+    })
+}
+
+function delTweet(id, testDb) {
+  const connection = testDb || knex;
+  return connection("tweets")
+    .where('id', id)
+    .delete()
 }
