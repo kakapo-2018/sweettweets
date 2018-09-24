@@ -52,9 +52,10 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange} value={confirm} /></p>
 
         <select name='cohort' onChange={this.handleChange}>
-          <option value='1'>kakapo 2018</option>
-          <option value='2'>ruru 2018</option>
-          <option value='3'>OOO 2018</option>
+          <option value='0'>Pick your cohort </option>
+          <option value='1'>kakapo </option>
+          <option value='2'>ruru </option>
+          <option value='3'>Pohutukawa </option>
         </select>
 
         <button onClick={this.handleClick}>Register</button>
