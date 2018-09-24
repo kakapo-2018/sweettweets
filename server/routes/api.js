@@ -20,7 +20,7 @@ router.post("/register", register, auth.issueJwt);
 function signIn(req, res, next) {
   console.log("signIn");
   users
-    .getByName(req.body.username)
+    .getByName(req.body.user_name)
     .then(user => {
       return user || invalidCredentials(res);
     })
@@ -39,12 +39,12 @@ function signIn(req, res, next) {
 
 function register(req, res, next) {
   users
-    .exists(req.body.username)
+    .exists(req.body.user_name)
     .then(exists => {
       if (exists) {
         return res.status(400).send({ message: "User exists" });
       }
-      users.create(req.body.username, req.body.password).then(() => next());
+      users.create(req.body.user_name, req.body.password).then(() => next());
     })
     .catch(err => {
       res.status(400).send({ message: err.message });
