@@ -26,6 +26,8 @@ class App extends React.Component {
     };
     this.loginClick = this.loginClick.bind(this);
     this.registerClick = this.registerClick.bind(this);
+    this.tweetUpdate = this.tweetUpdate.bind(this);
+    this.toggleRegister = this.toggleRegister.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +52,18 @@ class App extends React.Component {
     }
   }
 
+  tweetUpdate() {
+    this.props.getTweet();
+  }
+
+  toggleRegister() {
+    this.setState({
+      showRegister: false,
+      showLogin: false,
+      showTweets: true
+    });
+  }
+
   render() {
     return (
       <div>
@@ -59,9 +73,13 @@ class App extends React.Component {
           registerClick={this.registerClick}
         />
         {this.state.showLogin && <LoginForm />}
-        {this.state.showRegister && <RegisterForm />}
+        {this.state.showRegister && (
+          <RegisterForm toggleRegister={this.toggleRegister} />
+        )}
         {this.state.showTweets &&
-          this.props.auth.isAuthenticated && <AddTweet />}
+          this.props.auth.isAuthenticated && (
+            <AddTweet tweetUpdate={this.tweetUpdate} />
+          )}
         {this.state.showTweets && <TweetList />}
       </div>
     );

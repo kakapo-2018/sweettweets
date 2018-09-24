@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { saveTweet } from "../actions/tweet";
+import { saveTweet, getTweet } from "../actions/tweet";
 
 class AddTweet extends React.Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class AddTweet extends React.Component {
 
   handleClick() {
     this.props.saveTweet(this.state.tweet, this.props.state.auth.user.id);
+    this.props.tweetUpdate();
   }
   render() {
     console.log(this.props.tweet);
@@ -74,6 +75,9 @@ function mapDispatchToProps(dispatch) {
   return {
     saveTweet: (tweet, id) => {
       dispatch(saveTweet(tweet, id));
+    },
+    getTweet: () => {
+      dispatch(getTweet());
     }
   };
 }

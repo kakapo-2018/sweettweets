@@ -6,7 +6,7 @@ export function saveTweet(tweet, id) {
     tweet: tweet,
     user_id: id
   };
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(saveTweetReq());
     request("post", "/add/tweet", obj).then(response => {
       if (!response.ok) {
@@ -42,11 +42,7 @@ function error() {
 //get all tweets
 
 export function getTweet() {
-  //   let obj = {
-  //     tweet: tweet,
-  //     user_id: id
-  //   };
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(getTweetReq());
     request("get", "/tweet").then(response => {
       if (!response.ok) {
