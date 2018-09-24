@@ -32,8 +32,6 @@ export function addProfile(profileInfo) {
     return request(profileInfo)
       .then(response => {
         if (!response.ok) {
-          // If there was a problem, we want to
-          // dispatch the error condition
           dispatch(registerError(response.body.message));
           return Promise.reject(response.body.message);
         } else {

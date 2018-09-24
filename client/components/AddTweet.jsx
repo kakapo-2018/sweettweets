@@ -23,12 +23,10 @@ class AddTweet extends React.Component {
     this.props.saveTweet(this.state.tweet, this.props.state.auth.user.id);
     setTimeout(
       function() {
-        //Start the timer
-        this.props.tweetUpdate(); //After 1 second, set render to true
+        this.props.tweetUpdate();
       }.bind(this),
       200
     );
-    // this.props.tweetUpdate();
   }
   render() {
     return (

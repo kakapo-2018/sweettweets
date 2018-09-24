@@ -1,21 +1,13 @@
 import React from "react";
-
 import { connect } from "react-redux";
 
 import Navbar from "./Navbar";
-// import ErrorMessage from "./ErrorMessage"
-// import Links from "./Links"
-// import Loading from "./Loading"
 import LoginForm from "./LoginForm";
-// import Logout from "./Logout"
 import RegisterForm from "./RegisterForm";
 import TweetList from "./TweetList";
 import AddTweet from "./AddTweet";
 import { getTweet } from "./../actions/tweet";
 import ProfileForm from "./ProfileForm";
-// import { requestLogin, receiveLogin, loginError } from "../actions/login"
-// import { requestLogout, receiveLogout } from "../actions/logout"
-// import { requestRegister, registerError, registerUser } from "../actions/register"
 
 class App extends React.Component {
   constructor(props) {
@@ -24,21 +16,29 @@ class App extends React.Component {
       showRegister: false,
       showLogin: false,
       showTweets: true,
-      showProfile: false
+      showProfile: false,
+      addTweet: false
     };
     this.loginClick = this.loginClick.bind(this);
+    this.toggleLogin = this.toggleLogin.bind(this);
     this.registerClick = this.registerClick.bind(this);
     this.profileClick = this.profileClick.bind(this);
     this.tweetUpdate = this.tweetUpdate.bind(this);
     this.toggleRegister = this.toggleRegister.bind(this);
+    this.addClick = this.addClick.bind(this);
   }
 
   componentDidMount() {
     this.props.getTweet();
   }
 
+  addClick() {
+    this.setState(prevState => ({
+      addTweet: !prevState.addTweet
+    }));
+  }
+
   profileClick() {
-    console.log("clicked");
     if (!this.state.showProfile && !this.state.showLogin) {
       return this.setState({ showProfile: true });
     } else {
@@ -47,7 +47,6 @@ class App extends React.Component {
   }
 
   loginClick() {
-    // console.log('clicked')
     if (!this.state.showLogin) {
       return this.setState({
         showLogin: true,
@@ -64,7 +63,6 @@ class App extends React.Component {
   }
 
   registerClick() {
-    // console.log('clickedreg')
     if (!this.state.showRegister) {
       return this.setState({
         showRegister: true,
@@ -92,24 +90,33 @@ class App extends React.Component {
     });
   }
 
+  toggleLogin() {
+    this.setState({
+      showRegister: false,
+      showLogin: false,
+      showTweets: true
+    });
+  }
+
   render() {
     return (
-      <div>
-        <h1>Sweet Tweets</h1>
+      <div id="body2">
+        <h1 id="titleHead">Sweet Tweets</h1>
 
         <Navbar
           loginClick={this.loginClick}
           registerClick={this.registerClick}
           profileClick={this.profileClick}
+          addClick={this.addClick}
         />
-        {this.state.showLogin && <LoginForm />}
+        {this.state.showLogin && <LoginForm toggleLogin={this.toggleLogin} />}
         {this.state.showRegister && (
           <RegisterForm toggleRegister={this.toggleRegister} />
         )}
         {this.state.showProfile &&
           this.props.auth.isAuthenticated && <ProfileForm />}
 
-        {this.state.showTweets &&
+        {this.state.addTweet &&
           this.props.auth.isAuthenticated && (
             <AddTweet tweetUpdate={this.tweetUpdate} />
           )}
