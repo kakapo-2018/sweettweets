@@ -24,17 +24,36 @@ class AddTweet extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div
+        data-aos="fade-up-left
+        "
+        data-aos-offset="200"
+        data-aos-delay="400"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-mirror="true"
+        data-aos-once="true"
+        data-aos-anchor-placement="top-center"
+        id="addTweet"
+        className="container"
+      >
+        <img id="bird" width="150px" src="/bird.png" />
+        <h2>Add your tweet here:</h2>
         <p>
-          <input
+          <textarea
+            maxlength="200"
+            id="tweetInput"
+            className="form-control"
             type="text"
             name="tweet"
-            placeholder="Username"
+            placeholder="Tweet of advice goes here.."
             onChange={this.handleChange}
             value={this.state.tweet}
           />
         </p>
-        <button onClick={this.handleClick}>Save Tweet</button>
+        <button className="btn btn-primary" onClick={this.handleClick}>
+          Save Tweet
+        </button>
       </div>
     );
   }
