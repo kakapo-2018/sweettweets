@@ -24,11 +24,15 @@ function getTweets(testDb) {
 
 function updateTweet(tweet, id, testDb) {
   const connection = testDb || knex;
+  console.log({ tweet })
   return connection("tweets")
-    .where('id', id)
+    .where({ id: id })
     .update({
       tweet: tweet,
-    });
+    }).then(data => {
+      console.log(data)
+      return data
+    })
 }
 
 function delTweet(id, testDb) {
