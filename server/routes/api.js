@@ -10,10 +10,6 @@ const router = express.Router();
 router.use(express.json());
 
 //get all tweets
-router.get("/tweet", (req, res) => {
-  tweetDB.getTweets().then(data => res.json(data));
-});
-
 
 router.post("/signin", sayHello, signIn, auth.issueJwt);
 function sayHello(req, res, next) {
@@ -48,7 +44,9 @@ function register(req, res, next) {
       if (exists) {
         return res.status(400).send({ message: "User exists" });
       }
-      users.create(req.body.user_name, req.body.password, req.body.cohort).then(() => next());
+      users
+        .create(req.body.user_name, req.body.password, req.body.cohort)
+        .then(() => next());
     })
     .catch(err => {
       res.status(400).send({ message: err.message });
@@ -61,13 +59,15 @@ function invalidCredentials(res) {
   });
 }
 
+router.get("/tweet", (req, res) => {
+  tweetDB.getTweets().then(data => res.json(data));
+});
+
 // express-jwt middleware lets us use a function as the secret,
 // so we can grab from wherever...
 function getSecret(req, payload, done) {
   done(null, process.env.JWT_SECRET);
 }
-
-
 
 // Protect all routes beneath this point
 router.use(
@@ -95,25 +95,19 @@ router.post("/add/tweet", (req, res) => {
     .then(data => res.json(data));
 });
 
-
 // delete tweet
 router.delete("/tweet", (req, res) => {
-  tweetDB
-    .delTweet(req.body.id)
-    .then(data => res.json(data));
+  tweetDB.delTweet(req.body.id).then(data => res.json(data));
 });
 
 // update tweet
 router.put("/tweet/update", (req, res) => {
   //console.log(req, 'helloo?')
   // console.log(req.body.tweet)
-  tweetDB
-    .updateTweet(req.body.tweet, req.body.id)
-    .then(data => {
-      // console.log(data)
-      return res.json({ updated: data })
-    });
+  tweetDB.updateTweet(req.body.tweet, req.body.id).then(data => {
+    // console.log(data)
+    return res.json({ updated: data });
+  });
 });
-
 
 module.exports = router;

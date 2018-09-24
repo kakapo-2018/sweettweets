@@ -38,7 +38,7 @@ export function loginUser(creds) {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
 
-    return request("post", "signin", creds)
+    return request("post", "/signin", creds)
       .then(response => {
         if (!response.ok) {
           // If there was a problem, we want to
