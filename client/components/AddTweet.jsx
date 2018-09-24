@@ -7,7 +7,7 @@ class AddTweet extends React.Component {
     super(props);
     this.state = {
       tweet: "",
-      tweetResponse: this.props.state.tweet.tweet || ""
+      tweetResponse: this.props.tweet.tweet || ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -25,6 +25,7 @@ class AddTweet extends React.Component {
   }
   render() {
     console.log(this.props.tweet);
+    console.log(this.state);
 
     return (
       <div
@@ -40,7 +41,7 @@ class AddTweet extends React.Component {
         id="addTweet"
         className="container"
       >
-        <h3>{this.state.tweetResponse}</h3>
+        <h3>{this.props.tweet.tweet && "Tweet Saved!"}</h3>
         <img id="bird" width="150px" src="/bird.png" />
         <h2>Add your tweet here:</h2>
         <p>
