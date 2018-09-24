@@ -1,23 +1,24 @@
 import React from "react";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import Navbar from "./Navbar";
-import ErrorMessage from "./ErrorMessage"
-import Links from "./Links"
-import Loading from "./Loading"
+// import ErrorMessage from "./ErrorMessage"
+// import Links from "./Links"
+// import Loading from "./Loading"
 import LoginForm from "./LoginForm"
-import Logout from "./Logout"
+// import Logout from "./Logout"
 import RegisterForm from "./RegisterForm"
-import Tweets from "./Tweets"
+import TweetList from "./TweetList"
 
-import {requestLogin, receiveLogin, loginError} from "../actions/login"
-import {requestLogout, receiveLogout} from "../actions/logout"
-import {requestRegister, registerError, registerUser} from "../actions/register"
+import { getTweet } from './../actions/tweet'
+// import { requestLogin, receiveLogin, loginError } from "../actions/login"
+// import { requestLogout, receiveLogout } from "../actions/logout"
+// import { requestRegister, registerError, registerUser } from "../actions/register"
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       showRegister: false,
       showLogin: false,
       showTweets: true
@@ -26,45 +27,58 @@ class App extends React.Component {
     this.registerClick = this.registerClick.bind(this)
   }
 
-  loginClick(){
-    console.log('clicked')
-    if (!this.state.showLogin){
-      return this.setState({ showLogin : true , showRegister: false} );
+  componentDidMount() {
+    this.props.getTweet()
+  }
+
+  loginClick() {
+    // console.log('clicked')
+    if (!this.state.showLogin) {
+      return this.setState({ showLogin: true, showRegister: false });
     } else {
-      return this.setState({ showLogin : false , showRegister: false} );
+      return this.setState({ showLogin: false, showRegister: false });
     }
 
   }
 
-  registerClick(){
-    console.log('clickedreg')
-    if (!this.state.showRegister){
-      return this.setState({showRegister: true , showLogin: false} );
+  registerClick() {
+    // console.log('clickedreg')
+    if (!this.state.showRegister) {
+      return this.setState({ showRegister: true, showLogin: false });
     } else {
-      return this.setState({ showLogin : false , showRegister: false})
-    } 
-    
-      }
+      return this.setState({ showLogin: false, showRegister: false })
+    }
+
+  }
 
   render() {
     return (
-      
+
       <div>
         <h1>Sweet Tweets</h1>
-        <Navbar loginClick={this.loginClick} registerClick={this.registerClick}/>
-        {this.state.showLogin && <LoginForm/>} 
-        {this.state.showRegister && <RegisterForm/>}
-        {this.state.showTweets && <Tweets/>} 
+        <Navbar loginClick={this.loginClick} registerClick={this.registerClick} />
+        {this.state.showLogin && <LoginForm />}
+        {this.state.showRegister && <RegisterForm />}
+        {this.state.showTweets && <TweetList />}
       </div>
-      
+
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    tweets: state.tweets
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getTweet: () => {
+      dispatch(getTweet())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
