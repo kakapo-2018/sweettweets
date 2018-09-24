@@ -6,8 +6,7 @@ class AddTweet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tweet: "",
-      tweetResponse: this.props.tweet.tweet || ""
+      tweet: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -41,7 +40,7 @@ class AddTweet extends React.Component {
         id="addTweet"
         className="container"
       >
-        <h3>{this.props.tweet.tweet && "Tweet Saved!"}</h3>
+        <h3>{this.props.tweets.length > 1 && "Tweet Saved!"}</h3>
         <img id="bird" width="150px" src="/bird.png" />
         <h2>Add your tweet here:</h2>
         <p>
@@ -67,7 +66,7 @@ class AddTweet extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    tweet: state.tweet
+    tweets: state.tweets
   };
 }
 
