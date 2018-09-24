@@ -5,20 +5,37 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('tweets').insert([
         {
-          tweet: 'tweet tweet tweet',
+          tweet: 'Set small victories for your code, and build up those victories into something huge.',
           user_id: '1',
         },
         {
-          tweet: 'meep meep meep',
+          tweet: 'input === output',
           user_id: '1',
         },
         {
-          tweet: 'beep beep beep',
+          tweet: 'ceiling insulation tastes better than asbestos',
           user_id: '1',
         },
         {
-          tweet: 'Wise advice',
+          tweet: 'Review concept on the same day',
           user_id: '2',
+        },
+
+        {
+          tweet: 'Look for the understanding of process over product',
+          user_id: '2',
+        },
+        {
+          tweet: 'tweet of advice: define your weekly hours in the first week and commit throughout. aim for 700-1,000 hours total bootcamp time.',
+          user_id: '2',
+        },
+        {
+          tweet: 'Do yoga when you can',
+          user_id: '3', 
+        },
+        {
+          tweet: 'Flick through the Student Handbook before the week to get familiar with new ideas, review it more thoroughly at the end of the week to hit things home. Have fun!',
+          user_id: '3', 
         }
       ]);
     });
