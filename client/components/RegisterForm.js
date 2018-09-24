@@ -1,14 +1,14 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {registerUser, registerError} from '../actions/register'
+import { registerUser, registerError } from '../actions/register'
 import ErrorMessage from './ErrorMessage'
 
 class RegisterForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      username: '',
+      user_name: '',
       password: '',
       confirm: ''
     }
@@ -16,32 +16,32 @@ class RegisterForm extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value
     })
   }
 
-  handleClick (event) {
-    const {username, password, confirm} = this.state
+  handleClick(event) {
+    const { user_name, password, confirm } = this.state
     if (password !== confirm) {
       this.props.registerError('Passwords do not match!')
       return
     }
     const creds = {
-      username: username.trim(),
+      user_name: user_name.trim(),
       password: password.trim()
     }
     this.props.registerUser(creds)
   }
 
-  render () {
-    const {username, password, confirm} = this.state
+  render() {
+    const { user_name, password, confirm } = this.state
     return (
       <div>
-        <p><input name='username' placeholder='Username'
-          onChange={this.handleChange} value={username} /></p>
+        <p><input name='user_name' placeholder='Username'
+          onChange={this.handleChange} value={user_name} /></p>
 
         <p><input type='password' name='password' placeholder='Password'
           onChange={this.handleChange} value={password} /></p>
