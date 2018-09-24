@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <h1>Sweet Tweets</h1>
       <Navbar />
-      {/* {this.props.auth.isAuthenticated && <AddTweet />} */}
+      <AddTweet />
     </div>
   );
 };
