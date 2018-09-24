@@ -1,4 +1,5 @@
 import React from "react";
+
 import { connect } from 'react-redux'
 
 import Navbar from "./Navbar";
@@ -9,7 +10,7 @@ import LoginForm from "./LoginForm"
 // import Logout from "./Logout"
 import RegisterForm from "./RegisterForm"
 import TweetList from "./TweetList"
-
+import AddTweet from "./AddTweet";
 import { getTweet } from './../actions/tweet'
 // import { requestLogin, receiveLogin, loginError } from "../actions/login"
 // import { requestLogout, receiveLogout } from "../actions/logout"
@@ -22,10 +23,11 @@ class App extends React.Component {
       showRegister: false,
       showLogin: false,
       showTweets: true
-    }
-    this.loginClick = this.loginClick.bind(this)
-    this.registerClick = this.registerClick.bind(this)
+    };
+    this.loginClick = this.loginClick.bind(this);
+    this.registerClick = this.registerClick.bind(this);
   }
+
 
   componentDidMount() {
     this.props.getTweet()
@@ -38,7 +40,6 @@ class App extends React.Component {
     } else {
       return this.setState({ showLogin: false, showRegister: false });
     }
-
   }
 
   registerClick() {
@@ -53,20 +54,19 @@ class App extends React.Component {
 
   render() {
     return (
-
       <div>
         <h1>Sweet Tweets</h1>
         <Navbar loginClick={this.loginClick} registerClick={this.registerClick} />
         {this.state.showLogin && <LoginForm />}
         {this.state.showRegister && <RegisterForm />}
+         <AddTweet />
         {this.state.showTweets && <TweetList />}
       </div>
-
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     auth: state.auth,
     tweets: state.tweets
@@ -82,3 +82,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+

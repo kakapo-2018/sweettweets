@@ -87,9 +87,9 @@ router.use(
 //     user: `Your user ID is: ${req.user.id}`
 //   })
 // })
-router.post("/add/tweet", (req, res) => {
-  console.log("hit the route wahoooo");
-});
+// router.post("/add/tweet", (req, res) => {
+//   console.log("hit the route wahoooo");
+// });
 
 //save a tweet
 router.post("/add/tweet", (req, res) => {
