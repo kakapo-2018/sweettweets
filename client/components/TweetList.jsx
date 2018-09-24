@@ -10,7 +10,7 @@ const TweetList = props => {
       <div id="birdFloat" class="row">
         <div id="col1" class="col">
           <div id="birdFloat">
-            <img id="bird2" src="/images/kakapo1.gif" />
+            <img id="bird2" src="/images/kakapo/kakapomovesmile.gif" />
           </div>
         </div>
         <div id="speechCol" class="col">

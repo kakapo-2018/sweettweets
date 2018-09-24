@@ -109,7 +109,8 @@ class App extends React.Component {
   render() {
     return (
       <div id="body2">
-        <h1 id="titleHead">Sweet Tweets</h1>
+        <h1 id="titleHead">Sweet Tweets <img src="/images/logo/EDA-logo.png" id="logo"/>
+</h1>
 
         <Navbar
           loginClick={this.loginClick}

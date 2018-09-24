@@ -43,8 +43,11 @@ const Navbar = ({
               <button class="btn btn-success" onClick={addClick}>
                 <i id="breathe" class="fas fa-kiwi-bird" /> Add tweet
               </button>
+
             </div>
           )}
+        
+        
           <hr />
         </div>
       </div>
