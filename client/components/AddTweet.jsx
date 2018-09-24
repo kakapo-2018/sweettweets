@@ -6,7 +6,8 @@ class AddTweet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tweet: ""
+      tweet: "",
+      tweetResponse: this.props.state.tweet.tweet || ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -20,9 +21,11 @@ class AddTweet extends React.Component {
   }
 
   handleClick() {
-    this.props.saveTweet(this.state.tweet);
+    this.props.saveTweet(this.state.tweet, this.props.state.auth.user.id);
   }
   render() {
+    console.log(this.props.tweet);
+
     return (
       <div
         data-aos="fade-up-left
@@ -37,6 +40,7 @@ class AddTweet extends React.Component {
         id="addTweet"
         className="container"
       >
+        <h3>{this.state.tweetResponse}</h3>
         <img id="bird" width="150px" src="/bird.png" />
         <h2>Add your tweet here:</h2>
         <p>
@@ -59,15 +63,22 @@ class AddTweet extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    state: state,
+    tweet: state.tweet
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
-    saveTweet: tweet => {
-      dispatch(saveTweet(tweet));
+    saveTweet: (tweet, id) => {
+      dispatch(saveTweet(tweet, id));
     }
   };
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddTweet);
