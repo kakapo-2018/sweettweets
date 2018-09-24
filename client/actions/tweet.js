@@ -10,6 +10,7 @@ export function saveTweet(tweet) {
     dispatch(saveTweetReq());
     request("post", "/add/tweet", obj).then(response => {
       if (!response.ok) {
+        dispatch(saveError());
       } else {
         dispatch(saveTweetRec());
       }
@@ -32,4 +33,8 @@ function saveTweetRec() {
     isAuthenticated: true,
     response: "Tweet saved!!"
   };
+}
+
+function saveError() {
+  console.log("error!!!!");
 }

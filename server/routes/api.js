@@ -4,6 +4,7 @@ const verifyJwt = require("express-jwt");
 const crypto = require("../lib/crypto");
 const users = require("../lib/users");
 const auth = require("../lib/auth");
+const tweetDB = require("../lib/tweets");
 
 const router = express.Router();
 router.use(express.json());
@@ -79,7 +80,10 @@ router.use(
 //   })
 // })
 router.post("/add/tweet", (req, res) => {
+  console.log(req);
+
   console.log("hit the route wahoooo");
+  tweetDB.saveTweet("hello", "3").then(data => console.log(data));
 });
 
 module.exports = router;
