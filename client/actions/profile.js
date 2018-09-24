@@ -1,44 +1,47 @@
+import request from "../utils/api";
+
 export function requestProfile(message) {
   return {
-    type: 'REQUEST_PROFILE',
+    type: "REQUEST_PROFILE",
     isFetching: true,
     isAuthenticated: true,
     message
-  }
+  };
 }
 export function receiveProfile(message) {
   return {
-    type: 'RECIEVE_PROFILE',
+    type: "RECIEVE_PROFILE",
     isFetching: false,
     isAuthenticated: true,
     message
-  }
+  };
 }
 
 export function registerError(message) {
   return {
-    type: 'REGISTER_FAILURE',
+    type: "REGISTER_FAILURE",
     isFetching: false,
     isAuthenticated: false,
     message
-  }
+  };
 }
 
 export function addProfile(profileInfo) {
   return dispatch => {
-    dispatch(requestProfile(profileInfo))
+    dispatch(requestProfile(profileInfo));
     return request(profileInfo)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(registerError(response.body.message))
-          return Promise.reject(response.body.message)
+          dispatch(registerError(response.body.message));
+          return Promise.reject(response.body.message);
         } else {
-          dispatch(receiveProfile(profileInfo))
+          dispatch(receiveProfile(profileInfo));
         }
-      }).catch(err => {
-        dispatch(registerError(err.response.body.message))
       })
-  }
+      .catch(err => {
+        dispatch(registerError(err.response.body.message));
+      });
+  };
 }

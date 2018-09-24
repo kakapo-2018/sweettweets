@@ -38,7 +38,7 @@ class App extends React.Component {
   }
 
   profileClick() {
-    console.log('clicked')
+    console.log("clicked");
     if (!this.state.showProfile && !this.state.showLogin) {
       return this.setState({ showProfile: true });
     } else {
@@ -49,18 +49,34 @@ class App extends React.Component {
   loginClick() {
     // console.log('clicked')
     if (!this.state.showLogin) {
-      return this.setState({ showLogin: true, showRegister: false, showProfile: false });
+      return this.setState({
+        showLogin: true,
+        showRegister: false,
+        showProfile: false
+      });
     } else {
-      return this.setState({ showLogin: false, showRegister: false, showProfile: false });
+      return this.setState({
+        showLogin: false,
+        showRegister: false,
+        showProfile: false
+      });
     }
   }
 
   registerClick() {
     // console.log('clickedreg')
     if (!this.state.showRegister) {
-      return this.setState({ showRegister: true, showLogin: false, showProfile: false });
+      return this.setState({
+        showRegister: true,
+        showLogin: false,
+        showProfile: false
+      });
     } else {
-      return this.setState({ showLogin: false, showRegister: false, showProfile: false });
+      return this.setState({
+        showLogin: false,
+        showRegister: false,
+        showProfile: false
+      });
     }
   }
 
@@ -86,7 +102,9 @@ class App extends React.Component {
           profileClick={this.profileClick}
         />
         {this.state.showLogin && <LoginForm />}
-        {this.state.showRegister && <RegisterForm toggleRegister={this.toggleRegister} />
+        {this.state.showRegister && (
+          <RegisterForm toggleRegister={this.toggleRegister} />
+        )}
         {this.state.showProfile &&
           this.props.auth.isAuthenticated && <ProfileForm />}
 
