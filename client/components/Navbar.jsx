@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Route, withRouter} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Route, withRouter } from 'react-router-dom'
 
 import Links from './Links'
 import Logout from './Logout'
@@ -9,7 +9,7 @@ import RegisterForm from './RegisterForm'
 import { loginUser } from '../actions/login';
 
 
-const Navbar = ({isAuthenticated, loginClick, registerClick}) => {
+const Navbar = ({ isAuthenticated, loginClick, registerClick, profileClick }) => {
   return (
     <nav>
       <div>
@@ -19,11 +19,15 @@ const Navbar = ({isAuthenticated, loginClick, registerClick}) => {
               <button onClick={loginClick}>Login</button>
               <button onClick={registerClick}>Register</button>
             </div>
-              
+
           )}
-             {console.log(registerClick)}
-          {isAuthenticated && <Logout />}
-              
+          {console.log(registerClick)}
+          {isAuthenticated && (
+            <div>
+              <Logout />
+              <button onClick={profileClick}>My profile</button>
+            </div>
+          )}
           <hr />
         </div>
       </div>
