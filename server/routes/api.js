@@ -67,6 +67,8 @@ function getSecret(req, payload, done) {
   done(null, process.env.JWT_SECRET);
 }
 
+
+
 // Protect all routes beneath this point
 router.use(
   verifyJwt({
@@ -74,13 +76,6 @@ router.use(
   }),
   auth.handleError
 );
-
-// delete tweet
-router.delete("/tweet", (req, res) => {
-  tweetDB
-    .delTweet(req.body.id)
-    .then(data => res.json(data));
-});
 
 // These routes are protected  EXAMPLE IS BELOW
 // router.get('/secret', (req, res) => {
@@ -100,13 +95,25 @@ router.post("/add/tweet", (req, res) => {
     .then(data => res.json(data));
 });
 
-// update tweet
-router.put("/tweet/update", (req, res) => {
+
+// delete tweet
+router.delete("/tweet", (req, res) => {
   tweetDB
-    .updateTweet(req.body.tweet)
+    .delTweet(req.body.id)
     .then(data => res.json(data));
 });
 
+// update tweet
+router.put("/tweet/update", (req, res) => {
+  //console.log(req, 'helloo?')
+  // console.log(req.body.tweet)
+  tweetDB
+    .updateTweet(req.body.tweet, req.body.id)
+    .then(data => {
+      // console.log(data)
+      return res.json({ updated: data })
+    });
+});
 
 
 module.exports = router;

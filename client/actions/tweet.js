@@ -71,7 +71,6 @@ function getTweetRec(response) {
   };
 }
 
-
 //this is for Updating tweets!
 export function updateTweet(tweet, id) {
   let obj = {

@@ -31,26 +31,26 @@ export default function tweets(state = [], action) {
       return {
         ...state,
         isFetching: true,
-        isAuthenticated: false
+        isAuthenticated: true
       };
     case "TWEET_UPDATE_RECEIPT":
       return {
         ...state,
         isFetching: false,
-        isAuthenticated: false,
+        isAuthenticated: true,
         tweets: action.tweets
       };
     case "TWEET_DELETE_REQUEST":
       return {
         ...state,
         isFetching: true,
-        isAuthenticated: false
+        isAuthenticated: true
       };
     case "TWEET_DELETE_RECEIPT":
       return {
         ...state,
         isFetching: false,
-        isAuthenticated: false,
+        isAuthenticated: true,
         tweets: action.tweets
       };
     default:
