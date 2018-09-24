@@ -1,19 +1,15 @@
-import React from 'react'
-
-import Quote from './Quote'
-import Navbar from './Navbar'
+import React from "react";
+import Navbar from "./Navbar";
+import AddTweet from "./AddTweet";
 
 const App = () => {
   return (
     <div>
-      <h1>Quotes</h1>
-
+      <h1>Sweet Tweets</h1>
       <Navbar />
-      <div className='quote'>
-        <Quote />
-      </div>
+      {/* {this.props.auth.isAuthenticated && <AddTweet />} */}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
