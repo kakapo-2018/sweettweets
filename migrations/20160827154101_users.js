@@ -1,6 +1,7 @@
 exports.up = knex => knex.schema.createTable('users', table => {
   table.increments('id').primary()
-  table.string('username')
+  table.string('user_name')
+  table.string('cohort')
   table.binary('hash')
 })
 
