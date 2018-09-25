@@ -1,6 +1,8 @@
 #body2 {
   background-color: rgba(250, 128, 114, 0.4);
   min-height: 100vh;
+  background-image: url("/images/kelly.jpg");
+  background-size: cover;
 }
 
 #logout {
